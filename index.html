@@ -1,119 +1,175 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dreamers: The Dance & Karate Universe</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      scroll-behavior: smooth;
+    :root {
+      --bg-dark: #121212;
+      --glass: rgba(255, 255, 255, 0.08);
+      --text: #f0f0f0;
+      --accent: #ff6f61;
     }
-    body {
-      font-family: 'Rubik', sans-serif;
+
+    * {
       margin: 0;
       padding: 0;
-      background-color: #121212;
-      background-image: url('logo-transparent.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 80%;
-      background-attachment: fixed;
-      color: #eee;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
-    header, nav, section, .footer {
-      background: rgba(255, 255, 255, 0.06);
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      background: url('logo-transparent.png') no-repeat center center fixed;
+      background-size: 50%;
+      opacity: 0.03;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: var(--glass);
       backdrop-filter: blur(8px);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      margin: 1.5rem auto;
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 1000px;
-      animation: fadeInUp 1s ease both;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      animation: fadeIn 1s ease;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
     header img {
-      max-height: 80px;
+      max-height: 90px;
     }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 1rem 0 0.5rem;
+    }
+
     nav {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      flex-wrap: wrap;
+      background: var(--glass);
+      padding: 0.5rem;
+      backdrop-filter: blur(8px);
     }
+
     nav a {
-      color: #ffcccb;
-      font-weight: bold;
+      color: var(--accent);
       text-decoration: none;
-      transition: 0.3s;
+      margin: 0.5rem 1rem;
+      font-weight: 600;
+      transition: color 0.3s;
     }
+
     nav a:hover {
-      color: #ff4081;
+      color: #ffffff;
     }
-    ul { padding-left: 1.2rem; }
-    ul li {
+
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--glass);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      animation: fadeUp 1s ease;
+    }
+
+    h2 {
+      color: var(--accent);
       margin-bottom: 1rem;
     }
-    .slider {
-      position: relative;
-      overflow: hidden;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
+
+    ul li {
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
     }
-    .slide {
-      min-width: 100%;
-      max-height: 500px;
-      object-fit: contain;
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
     }
-    .prev, .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      font-size: 2rem;
-      padding: 0.5rem;
+
+    .gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
       cursor: pointer;
-      z-index: 2;
     }
-    .prev { left: 10px; }
-    .next { right: 10px; }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
     .footer {
       text-align: center;
-      color: #ccc;
+      padding: 2rem;
       font-size: 0.9rem;
+      color: #aaa;
     }
+
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #25D366;
+      background-color: #25d366;
       color: white;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      text-align: center;
-      font-size: 2rem;
-      line-height: 60px;
-      z-index: 100;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      padding: 15px;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+      text-decoration: none;
     }
+
     .whatsapp-float:hover {
-      background-color: #1ebe5d;
+      background-color: #1ebd5a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank">💬</a>
+
   <header>
-    <img src="logo.png" alt="Dreamers Logo">
+    <img src="logo-transparent.png" alt="Dreamers Logo">
     <h1>Dreamers: The Dance & Karate Universe</h1>
     <p>Where Passion Meets Power!</p>
   </header>
@@ -136,88 +192,73 @@
   <section id="classes">
     <h2>Our Classes</h2>
     <ul>
-      <li>💥 Karate, Stunts, Gymnastics & Martial Arts – Mon/Wed/Fri (7–8AM), Tue/Thu/Sat (4:30–6PM), Sun (7:30AM)</li>
-      <li>💃 Dance (All Styles) – Mon/Wed/Fri (5–6:30PM), Sun (9–10:30AM)</li>
-      <li>🧘‍♀️ Zumba, Yoga, Crossfit (Ladies Only) – Weekdays (5:30–6:30AM, 9:30–10:30AM)</li>
+      <li><strong>💥 Karate, Stunts, Gymnastics & Martial Arts</strong><br>
+        Morning (7–8 AM): Mon, Wed, Fri<br>
+        Evening (4:30–6 PM): Tue, Thu, Sat<br>
+        Sunday Combined: 7:30 AM
+      </li>
+      <li><strong>💃 Dance (All Styles)</strong><br>
+        Evening (5–6:30 PM): Mon, Wed, Fri<br>
+        Sunday: 9–10:30 AM
+      </li>
+      <li><strong>🧘‍♀️ Zumba, Yoga, Crossfit (Ladies)</strong><br>
+        Mon–Fri: 5:30–6:30 AM & 9:30–10:30 AM
+      </li>
     </ul>
   </section>
 
   <section id="fees">
     <h2>Fee Structure</h2>
     <ul>
-      <li><strong>Yearly:</strong> ₹10,000 (Admission Free)</li>
-      <li><strong>Half-Yearly:</strong> ₹5,500 (Admission Free)</li>
-      <li><strong>Quarterly:</strong> ₹3,000 (Admission Free)</li>
-      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 Admission</li>
+      <li><strong>Yearly:</strong> ₹10,000 (No Admission Fee)</li>
+      <li><strong>Half-Yearly:</strong> ₹5,500</li>
+      <li><strong>Quarterly:</strong> ₹3,000</li>
+      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 Admission Fee</li>
     </ul>
   </section>
 
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="slider">
-      <button class="prev">&#10094;</button>
-      <div class="slides">
-        
-        <img src="gallery1.jpeg" class="slide" alt="Gallery 1">
-        <img src="gallery2.jpeg" class="slide" alt="Gallery 2">
-        <img src="gallery3.jpeg" class="slide" alt="Gallery 3">
-        <img src="gallery4.jpeg" class="slide" alt="Gallery 4">
-        <img src="gallery5.jpeg" class="slide" alt="Gallery 5">
-        <img src="gallery6.jpeg" class="slide" alt="Gallery 6">
-        <img src="gallery7.jpeg" class="slide" alt="Gallery 7">
-        <img src="gallery8.jpeg" class="slide" alt="Gallery 8">
-        <img src="gallery9.jpeg" class="slide" alt="Gallery 9">
-        <img src="gallery10.jpeg" class="slide" alt="Gallery 10">
-        <img src="gallery11.jpeg" class="slide" alt="Gallery 11">
-        <img src="gallery12.jpeg" class="slide" alt="Gallery 12">
-        <img src="gallery13.jpeg" class="slide" alt="Gallery 13">
-        <img src="gallery14.jpeg" class="slide" alt="Gallery 14">
-        <img src="gallery15.jpeg" class="slide" alt="Gallery 15">
-        <img src="gallery16.jpeg" class="slide" alt="Gallery 16">
-        <img src="gallery17.jpeg" class="slide" alt="Gallery 17">
-        <img src="gallery18.jpeg" class="slide" alt="Gallery 18">
-        <img src="gallery19.jpeg" class="slide" alt="Gallery 19">
-        <img src="gallery20.jpeg" class="slide" alt="Gallery 20">
-        <img src="gallery21.jpeg" class="slide" alt="Gallery 21">
-        <img src="gallery22.jpeg" class="slide" alt="Gallery 22">
-      </div>
-      <button class="next">&#10095;</button>
+    <div class="gallery">
+      <!-- Add all 22 photos -->
+      <img src="gallery1.jpeg" alt="">
+      <img src="gallery2.jpeg" alt="">
+      <img src="gallery3.jpeg" alt="">
+      <img src="gallery4.jpeg" alt="">
+      <img src="gallery5.jpeg" alt="">
+      <img src="gallery6.jpeg" alt="">
+      <img src="gallery7.jpeg" alt="">
+      <img src="gallery8.jpeg" alt="">
+      <img src="gallery9.jpeg" alt="">
+      <img src="gallery10.jpeg" alt="">
+      <img src="gallery11.jpeg" alt="">
+      <img src="gallery12.jpeg" alt="">
+      <img src="gallery13.jpeg" alt="">
+      <img src="gallery14.jpeg" alt="">
+      <img src="gallery15.jpeg" alt="">
+      <img src="gallery16.jpeg" alt="">
+      <img src="gallery17.jpeg" alt="">
+      <img src="gallery18.jpeg" alt="">
+      <img src="gallery19.jpeg" alt="">
+      <img src="gallery20.jpeg" alt="">
+      <img src="gallery21.jpeg" alt="">
+      <img src="gallery22.jpeg" alt="">
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact & Address</h2>
-    <p><strong>Location:</strong> 2nd Floor, Navin Market, Pillar No. 52-53, Kurthoul, Patna - 804453</p>
-    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color:#fff;">+91 8210128137</a></p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color:#ffcccb;">@dreamers162023</a></p>
+    <p><strong>Location:</strong> 2nd Floor, Navin Market, Pillar No. 52–53, Kurthoul, Patna – 804453 (Near TVS Showroom & Laxmi Sweets)</p>
+    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color: #ccc;">+91 8210128137</a></p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color: #ccc;">@dreamers162023</a></p>
   </section>
 
   <div class="footer">
-    <p>&copy; 2025 Dreamers: The Dance & Karate Universe | Designed with 💖 for passionate learners</p>
+    &copy; 2025 Dreamers | Designed with ❤️ for passionate learners
   </div>
 
-  <script>
-    let slideIndex = 0;
-    const slides = document.querySelector('.slides');
-    const slideImages = document.querySelectorAll('.slide');
-    const totalSlides = slideImages.length;
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
 
-    function showSlide(index) {
-      if (index >= totalSlides) slideIndex = 0;
-      if (index < 0) slideIndex = totalSlides - 1;
-      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-    }
-    function nextSlide() {
-      slideIndex++;
-      showSlide(slideIndex);
-    }
-    function prevSlide() {
-      slideIndex--;
-      showSlide(slideIndex);
-    }
-    document.querySelector('.next').addEventListener('click', nextSlide);
-    document.querySelector('.prev').addEventListener('click', prevSlide);
-    setInterval(nextSlide, 3000);
-  </script>
 </body>
 </html>
