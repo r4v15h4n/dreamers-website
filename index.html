@@ -6,117 +6,132 @@
   <title>Dreamers: The Dance & Karate Universe</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Rubik', sans-serif;
+    :root {
+      --bg-dark: #121212;
+      --glass: rgba(255, 255, 255, 0.08);
+      --text: #f0f0f0;
+      --accent: #ff6f61;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      background: #111 url('logo-transparent.png') no-repeat center center fixed;
-      background-size: 50%;
-      color: #fff;
+      box-sizing: border-box;
       scroll-behavior: smooth;
     }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      background: url('logo-transparent.png') no-repeat center center fixed;
+      background-size: 50%;
+      opacity: 0.03;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
     header {
       text-align: center;
-      padding: 2rem 1rem;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
+      padding: 3rem 1rem 2rem;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      animation: fadeIn 1s ease;
     }
+
     header img {
-      max-height: 80px;
+      max-height: 90px;
     }
+
     header h1 {
-      font-size: 2.2rem;
-      margin: 0.5rem 0;
+      font-size: 2.5rem;
+      margin: 1rem 0 0.5rem;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: rgba(0,0,0,0.8);
       flex-wrap: wrap;
+      background: var(--glass);
+      padding: 0.5rem;
+      backdrop-filter: blur(8px);
     }
+
     nav a {
-      color: #ff6f61;
+      color: var(--accent);
       text-decoration: none;
-      padding: 1rem;
-      font-weight: bold;
-      transition: 0.3s;
+      margin: 0.5rem 1rem;
+      font-weight: 600;
+      transition: color 0.3s;
     }
+
     nav a:hover {
-      color: #fff;
+      color: #ffffff;
     }
 
     section {
-      background: rgba(255,255,255,0.07);
+      max-width: 1000px;
       margin: 2rem auto;
       padding: 2rem;
-      max-width: 900px;
+      background: var(--glass);
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      animation: fadeInUp 1s ease;
+      backdrop-filter: blur(12px);
+      animation: fadeUp 1s ease;
     }
+
     h2 {
-      color: #ffcccb;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
     }
+
     ul li {
-      margin: 1rem 0;
-      background: rgba(255,255,255,0.05);
-      padding: 1rem;
-      border-left: 4px solid #ff6f61;
-      border-radius: 6px;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
     }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
     .footer {
       text-align: center;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.9);
-      color: #ffcccb;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
 
-    /* GALLERY SLIDER */
-    .slider-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .slide {
-      min-width: 100%;
-      box-sizing: border-box;
-    }
-    .slide img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 2;
-      border-radius: 6px;
-    }
-    .prev-btn { left: 10px; }
-    .next-btn { right: 10px; }
-
-    /* WhatsApp Button */
-    .whatsapp {
+    .whatsapp-float {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -125,24 +140,29 @@
       border-radius: 50%;
       padding: 15px;
       font-size: 24px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
       text-decoration: none;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .slide img {
-        height: 220px;
-      }
+    .whatsapp-float:hover {
+      background-color: #1ebd5a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
       header h1 {
         font-size: 1.6rem;
       }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -165,87 +185,80 @@
   <section id="about">
     <h2>About Us</h2>
     <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
-    <p><strong>Achievements:</strong> International Athlete, Bihar Khel Samman, Black Belt (Japan)</p>
-    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall to energize your body and mind.</p>
+    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
+    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall designed to energize your body and mind.</p>
   </section>
 
   <section id="classes">
     <h2>Our Classes</h2>
     <ul>
-      <li><strong>Karate, Stunts, Gymnastics & Martial Arts</strong><br>
-        Morning (7:00 AM - 8:00 AM): Mon, Wed, Fri<br>
-        Evening (4:30 PM - 6:00 PM): Tue, Thu, Sat<br>
-        Sunday Combined Session: 7:30 AM</li>
-      <li><strong>Dance (All Styles)</strong><br>
-        Evening (5:00 PM - 6:30 PM): Mon, Wed, Fri<br>
-        Sunday Morning: 9:00 AM - 10:30 AM</li>
-      <li><strong>Zumba, Yoga, Weight Loss, Crossfit (Ladies Only)</strong><br>
-        Mon to Fri<br>
-        1st Batch: 5:30 AM - 6:30 AM<br>
-        2nd Batch: 9:30 AM - 10:30 AM</li>
+      <li><strong>💥 Karate, Stunts, Gymnastics & Martial Arts</strong><br>
+        Morning (7–8 AM): Mon, Wed, Fri<br>
+        Evening (4:30–6 PM): Tue, Thu, Sat<br>
+        Sunday Combined: 7:30 AM
+      </li>
+      <li><strong>💃 Dance (All Styles)</strong><br>
+        Evening (5–6:30 PM): Mon, Wed, Fri<br>
+        Sunday: 9–10:30 AM
+      </li>
+      <li><strong>🧘‍♀️ Zumba, Yoga, Crossfit (Ladies)</strong><br>
+        Mon–Fri: 5:30–6:30 AM & 9:30–10:30 AM
+      </li>
     </ul>
   </section>
 
   <section id="fees">
     <h2>Fee Structure</h2>
     <ul>
-      <li>Yearly: ₹10,000 (No Admission Fee)</li>
-      <li>Half-Yearly: ₹5,500 (No Admission Fee)</li>
-      <li>Quarterly: ₹3,000 (No Admission Fee)</li>
-      <li>Monthly: ₹1,200 + ₹1,000 Admission Fee</li>
+      <li><strong>Yearly:</strong> ₹10,000 (No Admission Fee)</li>
+      <li><strong>Half-Yearly:</strong> ₹5,500</li>
+      <li><strong>Quarterly:</strong> ₹3,000</li>
+      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 Admission Fee</li>
     </ul>
   </section>
 
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="slider-container">
-      <button class="nav-btn prev-btn">&#10094;</button>
-      <div class="slider" id="slider">
-        <!-- Replace below with your 22 images -->
-        <!-- Make sure to upload all `gallery1.jpeg` to `gallery22.jpeg` -->
-        <!-- You can generate this part dynamically too -->
-        <!-- Begin -->
-""" + "\n".join([
-    f'        <div class="slide"><img src="gallery{i}.jpeg" alt="Gallery {i}"></div>'
-    for i in range(1, 23)
-]) + """
-        <!-- End -->
-      </div>
-      <button class="nav-btn next-btn">&#10095;</button>
+    <div class="gallery">
+      <!-- Add all 22 photos -->
+      <img src="gallery1.jpeg" alt="">
+      <img src="gallery2.jpeg" alt="">
+      <img src="gallery3.jpeg" alt="">
+      <img src="gallery4.jpeg" alt="">
+      <img src="gallery5.jpeg" alt="">
+      <img src="gallery6.jpeg" alt="">
+      <img src="gallery7.jpeg" alt="">
+      <img src="gallery8.jpeg" alt="">
+      <img src="gallery9.jpeg" alt="">
+      <img src="gallery10.jpeg" alt="">
+      <img src="gallery11.jpeg" alt="">
+      <img src="gallery12.jpeg" alt="">
+      <img src="gallery13.jpeg" alt="">
+      <img src="gallery14.jpeg" alt="">
+      <img src="gallery15.jpeg" alt="">
+      <img src="gallery16.jpeg" alt="">
+      <img src="gallery17.jpeg" alt="">
+      <img src="gallery18.jpeg" alt="">
+      <img src="gallery19.jpeg" alt="">
+      <img src="gallery20.jpeg" alt="">
+      <img src="gallery21.jpeg" alt="">
+      <img src="gallery22.jpeg" alt="">
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact & Address</h2>
-    <p><strong>Location:</strong><br>
-    2nd Floor, Navin Market, Pillar No. 52-53,<br>
-    Kurthoul, Patna - 804453 (Near TVS Showroom & Laxmi Sweets)</p>
-    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color:#ffcccb;">+91 8210128137</a></p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color:#ffcccb;">@dreamers162023</a></p>
+    <p><strong>Location:</strong> 2nd Floor, Navin Market, Pillar No. 52–53, Kurthoul, Patna – 804453 (Near TVS Showroom & Laxmi Sweets)</p>
+    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color: #ccc;">+91 8210128137</a></p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color: #ccc;">@dreamers162023</a></p>
   </section>
 
   <div class="footer">
-    <p>&copy; 2025 Dreamers: The Dance & Karate Universe | Designed with 💖</p>
+    &copy; 2025 Dreamers | Designed with ❤️ for passionate learners
   </div>
 
-  <a href="https://wa.me/918210128137" class="whatsapp" target="_blank" title="Chat on WhatsApp">💬</a>
-
-  <script>
-    const slider = document.getElementById('slider');
-    const slides = document.querySelectorAll('.slide');
-    let currentIndex = 0;
-
-    function showSlide(index) {
-      if (index >= slides.length) currentIndex = 0;
-      else if (index < 0) currentIndex = slides.length - 1;
-      else currentIndex = index;
-      slider.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-    }
-
-    document.querySelector('.next-btn').addEventListener('click', () => showSlide(currentIndex + 1));
-    document.querySelector('.prev-btn').addEventListener('click', () => showSlide(currentIndex - 1));
-    setInterval(() => showSlide(currentIndex + 1), 4000);
-  </script>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
 
 </body>
 </html>
