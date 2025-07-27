@@ -9,36 +9,52 @@
   body {
     font-family: 'Rubik', sans-serif;
     margin: 0;
-    background: url('logo.png') repeat center center fixed;
-    background-size: 300px;
-    backdrop-filter: brightness(0.97);
+    background-color: #fdfdfd;
     color: #333;
+    position: relative;
+  }
+
+  /* Big faded logo in background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('logo.png') no-repeat center center;
+    background-size: 60vmin;
+    opacity: 0.05;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
   header, section, .footer {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     margin: 1.5rem auto;
     padding: 2rem;
     max-width: 1000px;
   }
 
   header {
-    background: linear-gradient(to right, #ff6f61dd, #6a11cbdd);
+    background: linear-gradient(to right, #ff6f61, #6a11cb);
     color: white;
     text-align: center;
     padding: 2.5rem 1rem;
+    border-radius: 0 0 20px 20px;
   }
 
   nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #ffffffdd;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 0.5rem;
   }
 
   nav a {
@@ -51,7 +67,6 @@
 
   nav a:hover {
     color: #6a11cb;
-    text-shadow: 0 0 5px rgba(106, 17, 203, 0.2);
   }
 
   section h2 {
@@ -81,14 +96,13 @@
     color: white;
   }
 
-  /* Gallery slider and lightbox code remains unchanged */
-
   @media (max-width: 600px) {
     header h1 { font-size: 1.8rem; }
     nav a { padding: 0.7rem; font-size: 0.9rem; }
     section, header { padding: 1rem; }
   }
 </style>
+  
 </head>
 <body>
   <header>
