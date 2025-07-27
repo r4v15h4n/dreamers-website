@@ -3,33 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dreamers: Gallery Slider</title>
+  <title>Dreamers: The Dance & Karate Universe</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Rubik', sans-serif;
-      background: #121212;
       margin: 0;
       padding: 0;
+      background: #111 url('logo-transparent.png') no-repeat center center fixed;
+      background-size: 50%;
       color: #fff;
+      scroll-behavior: smooth;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+    }
+    header img {
+      max-height: 80px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0.5rem 0;
+    }
+
+    nav {
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background: rgba(0,0,0,0.8);
+      flex-wrap: wrap;
     }
+    nav a {
+      color: #ff6f61;
+      text-decoration: none;
+      padding: 1rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+
+    section {
+      background: rgba(255,255,255,0.07);
+      margin: 2rem auto;
+      padding: 2rem;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      animation: fadeInUp 1s ease;
+    }
+    h2 {
+      color: #ffcccb;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      margin: 1rem 0;
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-left: 4px solid #ff6f61;
+      border-radius: 6px;
+    }
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.9);
+      color: #ffcccb;
+    }
+
+    /* GALLERY SLIDER */
     .slider-container {
       position: relative;
-      width: 95%;
-      max-width: 900px;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      background: #1e1e1e;
+      max-width: 900px;
+      margin: auto;
     }
     .slider {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      width: 2200%; /* 22 images */
     }
     .slide {
       min-width: 100%;
@@ -45,56 +103,132 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.4);
       color: white;
       border: none;
-      padding: 10px 16px;
       font-size: 2rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
+      z-index: 2;
       border-radius: 6px;
-      z-index: 10;
     }
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
 
+    /* WhatsApp Button */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .slide img {
         height: 220px;
       }
+      header h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <div class="slider-container">
-    <button class="nav-btn prev-btn">&#10094;</button>
-    <div class="slider" id="slider">
-      <!-- Slides: Add your 22 images -->
-      <div class="slide"><img src="gallery1.jpeg" alt="Gallery 1"></div>
-      <div class="slide"><img src="gallery2.jpeg" alt="Gallery 2"></div>
-      <div class="slide"><img src="gallery3.jpeg" alt="Gallery 3"></div>
-      <div class="slide"><img src="gallery4.jpeg" alt="Gallery 4"></div>
-      <div class="slide"><img src="gallery5.jpeg" alt="Gallery 5"></div>
-      <div class="slide"><img src="gallery6.jpeg" alt="Gallery 6"></div>
-      <div class="slide"><img src="gallery7.jpeg" alt="Gallery 7"></div>
-      <div class="slide"><img src="gallery8.jpeg" alt="Gallery 8"></div>
-      <div class="slide"><img src="gallery9.jpeg" alt="Gallery 9"></div>
-      <div class="slide"><img src="gallery10.jpeg" alt="Gallery 10"></div>
-      <div class="slide"><img src="gallery11.jpeg" alt="Gallery 11"></div>
-      <div class="slide"><img src="gallery12.jpeg" alt="Gallery 12"></div>
-      <div class="slide"><img src="gallery13.jpeg" alt="Gallery 13"></div>
-      <div class="slide"><img src="gallery14.jpeg" alt="Gallery 14"></div>
-      <div class="slide"><img src="gallery15.jpeg" alt="Gallery 15"></div>
-      <div class="slide"><img src="gallery16.jpeg" alt="Gallery 16"></div>
-      <div class="slide"><img src="gallery17.jpeg" alt="Gallery 17"></div>
-      <div class="slide"><img src="gallery18.jpeg" alt="Gallery 18"></div>
-      <div class="slide"><img src="gallery19.jpeg" alt="Gallery 19"></div>
-      <div class="slide"><img src="gallery20.jpeg" alt="Gallery 20"></div>
-      <div class="slide"><img src="gallery21.jpeg" alt="Gallery 21"></div>
-      <div class="slide"><img src="gallery22.jpeg" alt="Gallery 22"></div>
+  <header>
+    <img src="logo-transparent.png" alt="Dreamers Logo">
+    <h1>Dreamers: The Dance & Karate Universe</h1>
+    <p>Where Passion Meets Power!</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#classes">Classes</a>
+    <a href="#fees">Fees</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
+    <p><strong>Achievements:</strong> International Athlete, Bihar Khel Samman, Black Belt (Japan)</p>
+    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall to energize your body and mind.</p>
+  </section>
+
+  <section id="classes">
+    <h2>Our Classes</h2>
+    <ul>
+      <li><strong>Karate, Stunts, Gymnastics & Martial Arts</strong><br>
+        Morning (7:00 AM - 8:00 AM): Mon, Wed, Fri<br>
+        Evening (4:30 PM - 6:00 PM): Tue, Thu, Sat<br>
+        Sunday Combined Session: 7:30 AM</li>
+      <li><strong>Dance (All Styles)</strong><br>
+        Evening (5:00 PM - 6:30 PM): Mon, Wed, Fri<br>
+        Sunday Morning: 9:00 AM - 10:30 AM</li>
+      <li><strong>Zumba, Yoga, Weight Loss, Crossfit (Ladies Only)</strong><br>
+        Mon to Fri<br>
+        1st Batch: 5:30 AM - 6:30 AM<br>
+        2nd Batch: 9:30 AM - 10:30 AM</li>
+    </ul>
+  </section>
+
+  <section id="fees">
+    <h2>Fee Structure</h2>
+    <ul>
+      <li>Yearly: ₹10,000 (No Admission Fee)</li>
+      <li>Half-Yearly: ₹5,500 (No Admission Fee)</li>
+      <li>Quarterly: ₹3,000 (No Admission Fee)</li>
+      <li>Monthly: ₹1,200 + ₹1,000 Admission Fee</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="slider-container">
+      <button class="nav-btn prev-btn">&#10094;</button>
+      <div class="slider" id="slider">
+        <!-- Replace below with your 22 images -->
+        <!-- Make sure to upload all `gallery1.jpeg` to `gallery22.jpeg` -->
+        <!-- You can generate this part dynamically too -->
+        <!-- Begin -->
+""" + "\n".join([
+    f'        <div class="slide"><img src="gallery{i}.jpeg" alt="Gallery {i}"></div>'
+    for i in range(1, 23)
+]) + """
+        <!-- End -->
+      </div>
+      <button class="nav-btn next-btn">&#10095;</button>
     </div>
-    <button class="nav-btn next-btn">&#10095;</button>
+  </section>
+
+  <section id="contact">
+    <h2>Contact & Address</h2>
+    <p><strong>Location:</strong><br>
+    2nd Floor, Navin Market, Pillar No. 52-53,<br>
+    Kurthoul, Patna - 804453 (Near TVS Showroom & Laxmi Sweets)</p>
+    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color:#ffcccb;">+91 8210128137</a></p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color:#ffcccb;">@dreamers162023</a></p>
+  </section>
+
+  <div class="footer">
+    <p>&copy; 2025 Dreamers: The Dance & Karate Universe | Designed with 💖</p>
   </div>
+
+  <a href="https://wa.me/918210128137" class="whatsapp" target="_blank" title="Chat on WhatsApp">💬</a>
 
   <script>
     const slider = document.getElementById('slider');
@@ -105,13 +239,11 @@
       if (index >= slides.length) currentIndex = 0;
       else if (index < 0) currentIndex = slides.length - 1;
       else currentIndex = index;
-
-      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      slider.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
     }
 
     document.querySelector('.next-btn').addEventListener('click', () => showSlide(currentIndex + 1));
     document.querySelector('.prev-btn').addEventListener('click', () => showSlide(currentIndex - 1));
-
     setInterval(() => showSlide(currentIndex + 1), 4000);
   </script>
 
