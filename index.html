@@ -1,66 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dreamers: The Dance & Karate Universe</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
+    html {
       scroll-behavior: smooth;
     }
     body {
-      font-family: 'Rubik', sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #121212;
-      background-image: url('logo-transparent.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 80%;
-      background-attachment: fixed;
-      color: #eee;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+      color: #111;
+      position: relative;
     }
-    header, nav, section, .footer {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(8px);
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: url('logo-transparent.png') no-repeat center center;
+      background-size: 60vmin;
+      opacity: 0.02;
+      filter: blur(1px);
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .content-container {
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      margin: 1.5rem auto;
-      padding: 1.5rem;
-      width: 90%;
+      padding: 2rem;
+      margin: 2rem auto;
       max-width: 1000px;
-      animation: fadeInUp 1s ease both;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      animation: fadeIn 1s ease;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
     }
     header img {
       max-height: 80px;
     }
     nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
+      text-align: center;
+      margin: 1rem 0;
     }
     nav a {
-      color: #ffcccb;
+      margin: 0 1rem;
+      color: #ff6f61;
       font-weight: bold;
       text-decoration: none;
-      transition: 0.3s;
     }
     nav a:hover {
-      color: #ff4081;
-    }
-    ul { padding-left: 1.2rem; }
-    ul li {
-      margin-bottom: 1rem;
+      text-decoration: underline;
     }
     .slider {
       position: relative;
       overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      max-width: 100%;
     }
     .slides {
       display: flex;
@@ -68,133 +73,141 @@
     }
     .slide {
       min-width: 100%;
-      max-height: 500px;
+      height: auto;
       object-fit: contain;
     }
     .prev, .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.4);
       color: white;
       border: none;
       font-size: 2rem;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      z-index: 2;
+      border-radius: 50%;
     }
     .prev { left: 10px; }
     .next { right: 10px; }
     .footer {
       text-align: center;
       color: #ccc;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
     }
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #25D366;
+      background: #25d366;
       color: white;
       border-radius: 50%;
       width: 60px;
       height: 60px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 2rem;
-      line-height: 60px;
-      z-index: 100;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+      text-decoration: none;
     }
-    .whatsapp-float:hover {
-      background-color: #1ebe5d;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank">💬</a>
-  <header>
-    <img src="logo.png" alt="Dreamers Logo">
-    <h1>Dreamers: The Dance & Karate Universe</h1>
-    <p>Where Passion Meets Power!</p>
-  </header>
+  <div class="content-container">
+    <header>
+      <img src="logo.png" alt="Dreamers Logo" />
+      <h1>Dreamers: The Dance & Karate Universe</h1>
+      <p>Where Passion Meets Power!</p>
+    </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#classes">Classes</a>
-    <a href="#fees">Fees</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#classes">Classes</a>
+      <a href="#fees">Fees</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
-    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
-    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall designed to energize your body and mind.</p>
-  </section>
+    <section id="about">
+      <h2>About Us</h2>
+      <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
+      <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
+      <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall designed to energize your body and mind.</p>
+    </section>
 
-  <section id="classes">
-    <h2>Our Classes</h2>
-    <ul>
-      <li>💥 Karate, Stunts, Gymnastics & Martial Arts – Mon/Wed/Fri (7–8AM), Tue/Thu/Sat (4:30–6PM), Sun (7:30AM)</li>
-      <li>💃 Dance (All Styles) – Mon/Wed/Fri (5–6:30PM), Sun (9–10:30AM)</li>
-      <li>🧘‍♀️ Zumba, Yoga, Crossfit (Ladies Only) – Weekdays (5:30–6:30AM, 9:30–10:30AM)</li>
-    </ul>
-  </section>
+    <section id="classes">
+      <h2>Our Classes</h2>
+      <ul>
+        <li><strong>Karate, Stunts, Gymnastics & Martial Arts</strong></li>
+        <li><strong>Dance (All Styles)</strong></li>
+        <li><strong>Zumba, Yoga, Weight Loss, Crossfit (Ladies Only)</strong></li>
+      </ul>
+    </section>
 
-  <section id="fees">
-    <h2>Fee Structure</h2>
-    <ul>
-      <li><strong>Yearly:</strong> ₹10,000 (Admission Free)</li>
-      <li><strong>Half-Yearly:</strong> ₹5,500 (Admission Free)</li>
-      <li><strong>Quarterly:</strong> ₹3,000 (Admission Free)</li>
-      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 Admission</li>
-    </ul>
-  </section>
+    <section id="fees">
+      <h2>Fee Structure</h2>
+      <ul>
+        <li>Yearly: ₹10,000</li>
+        <li>Half-Yearly: ₹5,500</li>
+        <li>Quarterly: ₹3,000</li>
+        <li>Monthly: ₹1,200 + ₹1,000 Admission</li>
+      </ul>
+    </section>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="slider">
-      <button class="prev">&#10094;</button>
-      <div class="slides">
-        
-        <img src="gallery1.jpeg" class="slide" alt="Gallery 1">
-        <img src="gallery2.jpeg" class="slide" alt="Gallery 2">
-        <img src="gallery3.jpeg" class="slide" alt="Gallery 3">
-        <img src="gallery4.jpeg" class="slide" alt="Gallery 4">
-        <img src="gallery5.jpeg" class="slide" alt="Gallery 5">
-        <img src="gallery6.jpeg" class="slide" alt="Gallery 6">
-        <img src="gallery7.jpeg" class="slide" alt="Gallery 7">
-        <img src="gallery8.jpeg" class="slide" alt="Gallery 8">
-        <img src="gallery9.jpeg" class="slide" alt="Gallery 9">
-        <img src="gallery10.jpeg" class="slide" alt="Gallery 10">
-        <img src="gallery11.jpeg" class="slide" alt="Gallery 11">
-        <img src="gallery12.jpeg" class="slide" alt="Gallery 12">
-        <img src="gallery13.jpeg" class="slide" alt="Gallery 13">
-        <img src="gallery14.jpeg" class="slide" alt="Gallery 14">
-        <img src="gallery15.jpeg" class="slide" alt="Gallery 15">
-        <img src="gallery16.jpeg" class="slide" alt="Gallery 16">
-        <img src="gallery17.jpeg" class="slide" alt="Gallery 17">
-        <img src="gallery18.jpeg" class="slide" alt="Gallery 18">
-        <img src="gallery19.jpeg" class="slide" alt="Gallery 19">
-        <img src="gallery20.jpeg" class="slide" alt="Gallery 20">
-        <img src="gallery21.jpeg" class="slide" alt="Gallery 21">
-        <img src="gallery22.jpeg" class="slide" alt="Gallery 22">
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="slider">
+        <button class="prev">&#10094;</button>
+        <div class="slides" id="slides">
+  <!-- All 22 images listed below -->
+  <img src="gallery1.jpeg" class="slide" alt="Gallery 1" />
+  <img src="gallery2.jpeg" class="slide" alt="Gallery 2" />
+  <img src="gallery3.jpeg" class="slide" alt="Gallery 3" />
+  <img src="gallery4.jpeg" class="slide" alt="Gallery 4" />
+  <img src="gallery5.jpeg" class="slide" alt="Gallery 5" />
+  <img src="gallery6.jpeg" class="slide" alt="Gallery 6" />
+  <img src="gallery7.jpeg" class="slide" alt="Gallery 7" />
+  <img src="gallery8.jpeg" class="slide" alt="Gallery 8" />
+  <img src="gallery9.jpeg" class="slide" alt="Gallery 9" />
+  <img src="gallery10.jpeg" class="slide" alt="Gallery 10" />
+  <img src="gallery11.jpeg" class="slide" alt="Gallery 11" />
+  <img src="gallery12.jpeg" class="slide" alt="Gallery 12" />
+  <img src="gallery13.jpeg" class="slide" alt="Gallery 13" />
+  <img src="gallery14.jpeg" class="slide" alt="Gallery 14" />
+  <img src="gallery15.jpeg" class="slide" alt="Gallery 15" />
+  <img src="gallery16.jpeg" class="slide" alt="Gallery 16" />
+  <img src="gallery17.jpeg" class="slide" alt="Gallery 17" />
+  <img src="gallery18.jpeg" class="slide" alt="Gallery 18" />
+  <img src="gallery19.jpeg" class="slide" alt="Gallery 19" />
+  <img src="gallery20.jpeg" class="slide" alt="Gallery 20" />
+  <img src="gallery21.jpeg" class="slide" alt="Gallery 21" />
+  <img src="gallery22.jpeg" class="slide" alt="Gallery 22" />
+</div>
+
+        <button class="next">&#10095;</button>
       </div>
-      <button class="next">&#10095;</button>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <h2>Contact & Address</h2>
-    <p><strong>Location:</strong> 2nd Floor, Navin Market, Pillar No. 52-53, Kurthoul, Patna - 804453</p>
-    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color:#fff;">+91 8210128137</a></p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color:#ffcccb;">@dreamers162023</a></p>
-  </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>2nd Floor, Navin Market, Pillar No. 52-53, Kurthoul, Patna - 804453</p>
+      <p>Phone: <a href="tel:+918210128137">+91 8210128137</a></p>
+      <p>Instagram: <a href="https://instagram.com/dreamers162023" target="_blank">@dreamers162023</a></p>
+    </section>
+  </div>
 
   <div class="footer">
-    <p>&copy; 2025 Dreamers: The Dance & Karate Universe | Designed with 💖 for passionate learners</p>
+    &copy; 2025 Dreamers: The Dance & Karate Universe
   </div>
+
+  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank">💬</a>
 
   <script>
     let slideIndex = 0;
@@ -207,14 +220,17 @@
       if (index < 0) slideIndex = totalSlides - 1;
       slides.style.transform = `translateX(-${slideIndex * 100}%)`;
     }
+
     function nextSlide() {
       slideIndex++;
       showSlide(slideIndex);
     }
+
     function prevSlide() {
       slideIndex--;
       showSlide(slideIndex);
     }
+
     document.querySelector('.next').addEventListener('click', nextSlide);
     document.querySelector('.prev').addEventListener('click', prevSlide);
     setInterval(nextSlide, 3000);
