@@ -3,262 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dreamers: The Dance & Karate Universe</title>
+  <title>Dreamers: Gallery Slider</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-dark: #121212;
-      --glass: rgba(255, 255, 255, 0.08);
-      --text: #f0f0f0;
-      --accent: #ff6f61;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: 'Rubik', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text);
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      background: url('logo-transparent.png') no-repeat center center fixed;
-      background-size: 50%;
-      opacity: 0.03;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-      background: var(--glass);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      animation: fadeIn 1s ease;
-    }
-
-    header img {
-      max-height: 90px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin: 1rem 0 0.5rem;
-    }
-
-    nav {
+      background: #111;
+      margin: 0;
+      padding: 0;
+      color: #fff;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      background: var(--glass);
-      padding: 0.5rem;
-      backdrop-filter: blur(8px);
+      align-items: center;
+      height: 100vh;
     }
-
-    nav a {
-      color: var(--accent);
-      text-decoration: none;
-      margin: 0.5rem 1rem;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffffff;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: var(--glass);
+    .slider-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      overflow: hidden;
       border-radius: 12px;
-      backdrop-filter: blur(12px);
-      animation: fadeUp 1s ease;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-
-    h2 {
-      color: var(--accent);
-      margin-bottom: 1rem;
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
     }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
+    .slide {
+      min-width: 100%;
     }
-
-    ul li {
-      margin-bottom: 1rem;
-      border-left: 4px solid var(--accent);
-      padding-left: 1rem;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .gallery img {
+    .slide img {
       width: 100%;
-      height: 140px;
+      height: 400px;
       object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s;
-      cursor: pointer;
     }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
       color: white;
-      border-radius: 50%;
-      padding: 15px;
-      font-size: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: none;
+      padding: 10px;
+      font-size: 2rem;
+      cursor: pointer;
+      border-radius: 6px;
       z-index: 10;
-      text-decoration: none;
     }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
 
-    .whatsapp-float:hover {
-      background-color: #1ebd5a;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
+    @media (max-width: 768px) {
+      .slide img {
+        height: 250px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="logo-transparent.png" alt="Dreamers Logo">
-    <h1>Dreamers: The Dance & Karate Universe</h1>
-    <p>Where Passion Meets Power!</p>
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#classes">Classes</a>
-    <a href="#fees">Fees</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Us</h2>
-    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
-    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
-    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall designed to energize your body and mind.</p>
-  </section>
-
-  <section id="classes">
-    <h2>Our Classes</h2>
-    <ul>
-      <li><strong>💥 Karate, Stunts, Gymnastics & Martial Arts</strong><br>
-        Morning (7–8 AM): Mon, Wed, Fri<br>
-        Evening (4:30–6 PM): Tue, Thu, Sat<br>
-        Sunday Combined: 7:30 AM
-      </li>
-      <li><strong>💃 Dance (All Styles)</strong><br>
-        Evening (5–6:30 PM): Mon, Wed, Fri<br>
-        Sunday: 9–10:30 AM
-      </li>
-      <li><strong>🧘‍♀️ Zumba, Yoga, Crossfit (Ladies)</strong><br>
-        Mon–Fri: 5:30–6:30 AM & 9:30–10:30 AM
-      </li>
-    </ul>
-  </section>
-
-  <section id="fees">
-    <h2>Fee Structure</h2>
-    <ul>
-      <li><strong>Yearly:</strong> ₹10,000 (No Admission Fee)</li>
-      <li><strong>Half-Yearly:</strong> ₹5,500</li>
-      <li><strong>Quarterly:</strong> ₹3,000</li>
-      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 Admission Fee</li>
-    </ul>
-  </section>
-
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <!-- Add all 22 photos -->
-      <img src="gallery1.jpeg" alt="">
-      <img src="gallery2.jpeg" alt="">
-      <img src="gallery3.jpeg" alt="">
-      <img src="gallery4.jpeg" alt="">
-      <img src="gallery5.jpeg" alt="">
-      <img src="gallery6.jpeg" alt="">
-      <img src="gallery7.jpeg" alt="">
-      <img src="gallery8.jpeg" alt="">
-      <img src="gallery9.jpeg" alt="">
-      <img src="gallery10.jpeg" alt="">
-      <img src="gallery11.jpeg" alt="">
-      <img src="gallery12.jpeg" alt="">
-      <img src="gallery13.jpeg" alt="">
-      <img src="gallery14.jpeg" alt="">
-      <img src="gallery15.jpeg" alt="">
-      <img src="gallery16.jpeg" alt="">
-      <img src="gallery17.jpeg" alt="">
-      <img src="gallery18.jpeg" alt="">
-      <img src="gallery19.jpeg" alt="">
-      <img src="gallery20.jpeg" alt="">
-      <img src="gallery21.jpeg" alt="">
-      <img src="gallery22.jpeg" alt="">
+  <div class="slider-container">
+    <button class="nav-btn prev-btn">&#10094;</button>
+    <div class="slider" id="slider">
+      <!-- Image slides -->
+      <!-- Replace with your actual image paths -->
+      <!-- You must place gallery1.jpeg to gallery22.jpeg in the same folder -->
+""" + "\n".join([
+    f'      <div class="slide"><img src="gallery{i}.jpeg" alt="Gallery {i}"></div>'
+    for i in range(1, 23)
+]) + """
     </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact & Address</h2>
-    <p><strong>Location:</strong> 2nd Floor, Navin Market, Pillar No. 52–53, Kurthoul, Patna – 804453 (Near TVS Showroom & Laxmi Sweets)</p>
-    <p><strong>Phone:</strong> <a href="tel:+918210128137" style="color: #ccc;">+91 8210128137</a></p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color: #ccc;">@dreamers162023</a></p>
-  </section>
-
-  <div class="footer">
-    &copy; 2025 Dreamers | Designed with ❤️ for passionate learners
+    <button class="nav-btn next-btn">&#10095;</button>
   </div>
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
+  <script>
+    const slider = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      if (index >= slides.length) currentIndex = 0;
+      else if (index < 0) currentIndex = slides.length - 1;
+      else currentIndex = index;
+      slider.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+    }
+
+    document.querySelector('.next-btn').addEventListener('click', () => showSlide(currentIndex + 1));
+    document.querySelector('.prev-btn').addEventListener('click', () => showSlide(currentIndex - 1));
+
+    setInterval(() => showSlide(currentIndex + 1), 4000);
+  </script>
 
 </body>
 </html>
