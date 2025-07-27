@@ -44,7 +44,6 @@
       padding: 3rem 1rem 2rem;
       background: var(--glass);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     header img {
@@ -93,13 +92,19 @@
 
     ul {
       list-style: none;
-      padding-left: 0;
+      padding-left: 1rem;
     }
 
     ul li {
-      margin-bottom: 1rem;
-      border-left: 4px solid var(--accent);
-      padding-left: 1rem;
+      margin-bottom: 0.7rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: -1rem;
     }
 
     .slider-container {
@@ -107,7 +112,6 @@
     }
 
     .slider-wrapper {
-      position: relative;
       overflow: hidden;
       border-radius: 10px;
     }
@@ -144,11 +148,11 @@
     .next { right: 10px; }
 
     .thumbnails {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 10px;
       margin-top: 1rem;
-      justify-content: center;
+      justify-items: center;
     }
 
     .thumb {
@@ -196,6 +200,10 @@
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.6rem;
+      }
+      .thumb {
+        width: 50px;
+        height: 35px;
       }
     }
   </style>
@@ -290,7 +298,15 @@
     <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
     <p><strong>About Dreamers:</strong> Dreamers is not just a fitness studio—it's a movement. We inspire children, youth, and adults to embrace self-discipline and creativity through dance, martial arts, and wellness programs.</p>
     <p><strong>Why Join Us?</strong> We combine tradition and modern training with personalized guidance. Our vibrant community ensures you're always motivated and supported.</p>
-    <p><strong>Our Facility:</strong> Fully air-conditioned studio, cushioned floors, mirrors, music, safety equipment, and dynamic trainers—all designed to elevate your experience.</p>
+    <p><strong>Our Facilities:</strong></p>
+    <ul>
+      <li>Fully air-conditioned training studio</li>
+      <li>Shock-absorbent flooring for safety</li>
+      <li>Wall mirrors for performance improvement</li>
+      <li>Sound system for energetic classes</li>
+      <li>Dedicated space for yoga & crossfit</li>
+      <li>Certified and experienced trainers</li>
+    </ul>
     <p><strong>Mission:</strong> To empower individuals with skills, strength, and self-belief while promoting a healthy, artistic, and confident lifestyle.</p>
   </section>
 
@@ -302,22 +318,19 @@
     <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank" style="color: #ccc;">@dreamers162023</a></p>
   </section>
 
-  <!-- FOOTER -->
   <div class="footer">
     &copy; 2025 Dreamers | Designed with ❤️ for passionate learners
   </div>
 
-  <!-- WHATSAPP -->
+  <!-- WhatsApp Button -->
   <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
 
-  <!-- SCRIPT -->
   <script>
     const slider = document.getElementById('slider');
     const slides = slider.querySelectorAll('.slide');
     const thumbnails = document.getElementById('thumbnails');
 
     let currentIndex = 0;
-    let interval;
 
     function showSlide(index) {
       currentIndex = index;
@@ -346,7 +359,7 @@
       thumbnails.appendChild(thumb);
     });
 
-    interval = setInterval(nextSlide, 3000);
+    setInterval(nextSlide, 3000);
   </script>
 
 </body>
