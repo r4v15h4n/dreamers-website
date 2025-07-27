@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dreamers: The Dance & Karate Universe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Rubik', sans-serif;
       margin: 0;
@@ -18,16 +21,15 @@
       text-align: center;
       padding: 2rem 1rem;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0.5rem 0;
+    header img {
+      max-height: 80px;
     }
     nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
     nav a {
       padding: 1rem;
@@ -45,7 +47,7 @@
       max-width: 1000px;
       background: white;
       border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
     section h2 {
       color: #6a11cb;
@@ -70,32 +72,34 @@
     }
     .slider {
       position: relative;
-      width: 100%;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
     .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
     }
     .slide {
-      flex-shrink: 0;
-      width: 100%;
-      height: auto;
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0;
     }
     .slide img {
-      width: 100%;
-      height: auto;
-      display: block;
+      max-height: 300px;
+      width: auto;
+      border-radius: 8px;
+      cursor: pointer;
     }
     .prev, .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       color: white;
       border: none;
       font-size: 2rem;
@@ -106,20 +110,40 @@
     }
     .prev { left: 10px; }
     .next { right: 10px; }
-    @media screen and (max-width: 768px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      .prev, .next {
-        font-size: 1.5rem;
-        padding: 0.3rem 0.6rem;
-      }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin-top: 5vh;
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Dreamers Logo" style="max-height: 80px;">
+    <img src="logo.png" alt="Dreamers Logo" />
     <h1>Dreamers: The Dance & Karate Universe</h1>
     <p>Where Passion Meets Power!</p>
   </header>
@@ -130,82 +154,50 @@
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
-  <section id="about">
-    <h2>About Us</h2>
-    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
-    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
-    <p><strong>Facility:</strong> Fully Air-Conditioned Training Hall designed to energize your body and mind.</p>
-  </section>
-  <section id="classes">
-    <h2>Our Classes</h2>
-    <ul>
-      <li><strong>💥 Karate, Stunts, Gymnastics & Martial Arts</strong><br>
-        <strong>Timing:</strong><br>
-        Morning (7:00 AM - 8:00 AM): Mon, Wed, Fri<br>
-        Evening (4:30 PM - 6:00 PM): Tue, Thu, Sat<br>
-        Sunday Combined Session: 7:30 AM</li>
-      <li><strong>💃 Dance (All Styles)</strong><br>
-        <strong>Timing:</strong><br>
-        Evening (5:00 PM - 6:30 PM): Mon, Wed, Fri<br>
-        Sunday Morning: 9:00 AM - 10:30 AM</li>
-      <li><strong>🧘‍♀️ Zumba, Yoga, Weight Loss, Crossfit (Ladies Only)</strong><br>
-        <strong>Timing:</strong><br>
-        Monday to Friday<br>
-        1st Batch: 5:30 AM - 6:30 AM<br>
-        2nd Batch: 9:30 AM - 10:30 AM</li>
-    </ul>
-  </section>
-  <section id="fees">
-    <h2>Fee Structure</h2>
-    <ul>
-      <li><strong>Yearly:</strong> ₹10,000 (Admission Free)</li>
-      <li><strong>Half-Yearly:</strong> ₹5,500 (Admission Free)</li>
-      <li><strong>Quarterly:</strong> ₹3,000 (Admission Free)</li>
-      <li><strong>Monthly:</strong> ₹1,200 + ₹1,000 (Admission Fee)</li>
-    </ul>
-  </section>
+
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="slider">
       <button class="prev">&#10094;</button>
-      <div class="slides" id="slides">
-        <!-- Dynamically loaded images by JS -->
+      <div class="slides">
+        <!-- Add your image list below -->
+        <div class="slide"><img src="gallery1.jpeg" alt="1"></div>
+        <div class="slide"><img src="gallery2.jpeg" alt="2"></div>
+        <div class="slide"><img src="gallery3.jpeg" alt="3"></div>
+        <div class="slide"><img src="gallery4.jpeg" alt="4"></div>
+        <div class="slide"><img src="gallery5.jpeg" alt="5"></div>
+        <div class="slide"><img src="gallery6.jpeg" alt="6"></div>
+        <div class="slide"><img src="gallery7.jpeg" alt="7"></div>
+        <div class="slide"><img src="gallery8.jpeg" alt="8"></div>
+        <div class="slide"><img src="gallery9.jpeg" alt="9"></div>
+        <div class="slide"><img src="gallery10.jpeg" alt="10"></div>
+        <div class="slide"><img src="gallery11.jpeg" alt="11"></div>
+        <div class="slide"><img src="gallery12.jpeg" alt="12"></div>
+        <div class="slide"><img src="gallery13.jpeg" alt="13"></div>
+        <div class="slide"><img src="gallery14.jpeg" alt="14"></div>
+        <div class="slide"><img src="gallery15.jpeg" alt="15"></div>
+        <div class="slide"><img src="gallery16.jpeg" alt="16"></div>
+        <div class="slide"><img src="gallery17.jpeg" alt="17"></div>
+        <div class="slide"><img src="gallery18.jpeg" alt="18"></div>
+        <div class="slide"><img src="gallery19.jpeg" alt="19"></div>
+        <div class="slide"><img src="gallery20.jpeg" alt="20"></div>
+        <div class="slide"><img src="gallery21.jpeg" alt="21"></div>
+        <div class="slide"><img src="gallery22.jpeg" alt="22"></div>
       </div>
       <button class="next">&#10095;</button>
     </div>
   </section>
-  <section id="contact">
-    <h2>Contact & Address</h2>
-    <p><strong>Location:</strong><br>
-      2nd Floor, Navin Market, Pillar No. 52-53,<br>
-      Kurthoul, Patna - 804453<br>
-      Near TVS Showroom & Laxmi Sweets</p>
-    <p><strong>Phone:</strong> <a href="tel:+918210128137">+91 8210128137</a></p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/dreamers162023" target="_blank">@dreamers162023</a></p>
-  </section>
-  <div class="footer">
-    <p>&copy; 2025 Dreamers: The Dance & Karate Universe | Designed with 💖 for passionate learners</p>
+
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img" />
   </div>
+
   <script>
-    const images = [];
-    for (let i = 1; i <= 22; i++) {
-      images.push(`gallery${i}.jpeg`);
-    }
-
-    const slideContainer = document.getElementById('slides');
-    images.forEach(src => {
-      const div = document.createElement('div');
-      div.className = 'slide';
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = 'Gallery Photo';
-      div.appendChild(img);
-      slideContainer.appendChild(div);
-    });
-
     let slideIndex = 0;
     const slides = document.querySelector('.slides');
-    const totalSlides = images.length;
+    const slideElements = document.querySelectorAll('.slide');
+    const totalSlides = slideElements.length;
 
     function showSlide(index) {
       if (index >= totalSlides) slideIndex = 0;
@@ -226,9 +218,27 @@
     document.querySelector('.next').addEventListener('click', nextSlide);
     document.querySelector('.prev').addEventListener('click', prevSlide);
 
-    setInterval(() => {
-      nextSlide();
-    }, 4000);
+    setInterval(nextSlide, 3000);
+
+    // Modal zoom on click
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeModal = document.querySelector(".close");
+
+    document.querySelectorAll(".slide img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeModal.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function (e) {
+      if (e.target == modal) modal.style.display = "none";
+    }
   </script>
 </body>
 </html>
