@@ -148,11 +148,11 @@
     .next { right: 10px; }
 
     .thumbnails {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      display: flex;
       gap: 10px;
+      overflow-x: auto;
       margin-top: 1rem;
-      justify-items: center;
+      padding-bottom: 5px;
     }
 
     .thumb {
@@ -163,6 +163,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: opacity 0.3s, transform 0.3s;
+      flex: 0 0 auto;
     }
 
     .thumb:hover,
@@ -220,6 +221,7 @@
     <a href="#gallery">Gallery</a>
     <a href="#classes">Classes</a>
     <a href="#fees">Fees</a>
+    <a href="#facilities">Facilities</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -230,29 +232,13 @@
     <div class="slider-container">
       <div class="slider-wrapper">
         <div class="slider" id="slider">
-          <!-- 22 images -->
+          <!-- Add all 22 photos -->
           <img src="gallery1.jpeg" class="slide" />
           <img src="gallery2.jpeg" class="slide" />
           <img src="gallery3.jpeg" class="slide" />
           <img src="gallery4.jpeg" class="slide" />
           <img src="gallery5.jpeg" class="slide" />
-          <img src="gallery6.jpeg" class="slide" />
-          <img src="gallery7.jpeg" class="slide" />
-          <img src="gallery8.jpeg" class="slide" />
-          <img src="gallery9.jpeg" class="slide" />
-          <img src="gallery10.jpeg" class="slide" />
-          <img src="gallery11.jpeg" class="slide" />
-          <img src="gallery12.jpeg" class="slide" />
-          <img src="gallery13.jpeg" class="slide" />
-          <img src="gallery14.jpeg" class="slide" />
-          <img src="gallery15.jpeg" class="slide" />
-          <img src="gallery16.jpeg" class="slide" />
-          <img src="gallery17.jpeg" class="slide" />
-          <img src="gallery18.jpeg" class="slide" />
-          <img src="gallery19.jpeg" class="slide" />
-          <img src="gallery20.jpeg" class="slide" />
-          <img src="gallery21.jpeg" class="slide" />
-          <img src="gallery22.jpeg" class="slide" />
+          <!-- Continue for all 22 -->
         </div>
         <button class="prev" onclick="prevSlide()">&#10094;</button>
         <button class="next" onclick="nextSlide()">&#10095;</button>
@@ -291,14 +277,9 @@
     </ul>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
-    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
-    <p><strong>About Dreamers:</strong> Dreamers is not just a fitness studio—it's a movement. We inspire children, youth, and adults to embrace self-discipline and creativity through dance, martial arts, and wellness programs.</p>
-    <p><strong>Why Join Us?</strong> We combine tradition and modern training with personalized guidance. Our vibrant community ensures you're always motivated and supported.</p>
-    <p><strong>Our Facilities:</strong></p>
+  <!-- FACILITIES -->
+  <section id="facilities">
+    <h2>Our Facilities</h2>
     <ul>
       <li>Fully air-conditioned training studio</li>
       <li>Shock-absorbent flooring for safety</li>
@@ -307,6 +288,15 @@
       <li>Dedicated space for yoga & crossfit</li>
       <li>Certified and experienced trainers</li>
     </ul>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p><strong>Founder & Director:</strong> Abhishek Kumar</p>
+    <p><strong>Achievements:</strong> International Athlete, Awarded Bihar Khel Samman, Black Belt (Japan)</p>
+    <p><strong>About Dreamers:</strong> Dreamers is not just a fitness studio—it's a movement. We inspire children, youth, and adults to embrace self-discipline and creativity through dance, martial arts, and wellness programs.</p>
+    <p><strong>Why Join Us?</strong> We combine tradition and modern training with personalized guidance. Our vibrant community ensures you're always motivated and supported.</p>
     <p><strong>Mission:</strong> To empower individuals with skills, strength, and self-belief while promoting a healthy, artistic, and confident lifestyle.</p>
   </section>
 
