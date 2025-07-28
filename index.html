@@ -124,10 +124,11 @@
 
     .slide {
       flex: 0 0 100%;
-      max-height: 300px;
+      height: 320px;
       object-fit: cover;
       width: 100%;
       border-radius: 10px;
+      cursor: pointer;
     }
 
     .prev, .next {
@@ -140,7 +141,7 @@
       font-size: 2rem;
       padding: 0.4rem 1rem;
       cursor: pointer;
-      z-index: 1;
+      z-index: 2;
       border-radius: 8px;
     }
 
@@ -171,6 +172,24 @@
       opacity: 1;
       transform: scale(1.05);
       border: 2px solid var(--accent);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
     }
 
     .footer {
@@ -238,7 +257,23 @@
           <img src="gallery3.jpeg" class="slide" />
           <img src="gallery4.jpeg" class="slide" />
           <img src="gallery5.jpeg" class="slide" />
-          <!-- Continue for all 22 -->
+          <img src="gallery6.jpeg" class="slide" />
+          <img src="gallery7.jpeg" class="slide" />
+          <img src="gallery8.jpeg" class="slide" />
+          <img src="gallery9.jpeg" class="slide" />
+          <img src="gallery10.jpeg" class="slide" />
+          <img src="gallery11.jpeg" class="slide" />
+          <img src="gallery12.jpeg" class="slide" />
+          <img src="gallery13.jpeg" class="slide" />
+          <img src="gallery14.jpeg" class="slide" />
+          <img src="gallery15.jpeg" class="slide" />
+          <img src="gallery16.jpeg" class="slide" />
+          <img src="gallery17.jpeg" class="slide" />
+          <img src="gallery18.jpeg" class="slide" />
+          <img src="gallery19.jpeg" class="slide" />
+          <img src="gallery20.jpeg" class="slide" />
+          <img src="gallery21.jpeg" class="slide" />
+          <img src="gallery22.jpeg" class="slide" />
         </div>
         <button class="prev" onclick="prevSlide()">&#10094;</button>
         <button class="next" onclick="nextSlide()">&#10095;</button>
@@ -312,51 +347,69 @@
     &copy; 2025 Dreamers | Designed with ❤️ for passionate learners
   </div>
 
-  <!-- WhatsApp Button -->
   <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Full View" id="lightbox-img">
+  </div>
+
   <script>
-  const slides = document.querySelectorAll('.slide');
-  const thumbnails = document.querySelectorAll('.thumbnails img');
-  let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.getElementById('slider');
+    const thumbnailsContainer = document.getElementById('thumbnails');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    let currentIndex = 0;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.display = (i === index) ? 'block' : 'none';
+    // Generate thumbnails
+    slides.forEach((slide, index) => {
+      const thumb = document.createElement('img');
+      thumb.src = slide.src;
+      thumb.classList.add('thumb');
+      if (index === 0) thumb.classList.add('active');
+      thumb.addEventListener('click', () => showSlide(index));
+      thumbnailsContainer.appendChild(thumb);
+
+      // Lightbox trigger
+      slide.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = slide.src;
+      });
     });
-    thumbnails.forEach((thumb, i) => {
-      thumb.classList.toggle('active', i === index);
+
+    const thumbnails = document.querySelectorAll('.thumb');
+
+    function showSlide(index) {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    function prevSlide() {
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+
+    document.querySelector('.next').addEventListener('click', nextSlide);
+    document.querySelector('.prev').addEventListener('click', prevSlide);
+
+    setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
     });
-    currentIndex = index;
-  }
 
-  function nextSlide() {
-    const nextIndex = (currentIndex + 1) % slides.length;
-    showSlide(nextIndex);
-  }
-
-  function prevSlide() {
-    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-    showSlide(prevIndex);
-  }
-
-  document.querySelector('.next').addEventListener('click', nextSlide);
-  document.querySelector('.prev').addEventListener('click', prevSlide);
-
-  thumbnails.forEach((thumb, index) => {
-    thumb.addEventListener('click', () => {
-      showSlide(index);
-    });
-  });
-
-  // Auto-slide every 5 seconds
-  setInterval(() => {
-    nextSlide();
-  }, 5000);
-
-  // Initialize
-  showSlide(currentIndex);
-</script>
-
+    showSlide(currentIndex);
+  </script>
 </body>
 </html>
