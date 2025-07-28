@@ -425,13 +425,21 @@ ul li::before { content: "✨"; position: absolute; left: -1.5rem; font-size: 1.
 }
 
 .founder-photo {
-  width: 110px;
-  height: 110px;
+  width: 138px;
+  height: 138px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid var(--highlight);
-  box-shadow: 0 0 18px var(--highlight);
+  border: 8px solid var(--highlight);
+  box-shadow: 0 0 20px 4px var(--highlight), 0 4px 20px #0004;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .founder-photo {
+    width: 105px;
+    height: 105px;
+    border-width: 5px;
+  }
 }
 
 .founder-text {
