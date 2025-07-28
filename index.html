@@ -79,7 +79,7 @@
       transform: translate(-50%, -30%);
       width: 260px;
       max-width: 90vw;
-      opacity: 0.39; /* even more visible */
+      opacity: 0.39;
       z-index: 1;
       pointer-events: none;
       filter: drop-shadow(0 0 19px #0003);
@@ -114,6 +114,7 @@
       from {transform: translateY(0);}
       to {transform: translateY(-10px);}
     }
+
     nav {
       display: flex;
       justify-content: center;
@@ -175,7 +176,19 @@
     .slider-container {position: relative; margin-bottom: 1.3rem;}
     .slider-wrapper {overflow: hidden; border-radius: 13px; box-shadow: 0 8px 34px 0 #fff9 0.02;}
     .slider {display: flex; transition: transform 0.5s cubic-bezier(.68,1.32,.56,1), filter 0.3s; width: 100%;}
-    .slide {flex: 0 0 100%; height: 310px; object-fit: cover; width: 100%; border-radius: 14px; cursor: pointer; box-shadow: 0 8px 32px #3cf5 0.14; transition: 0.2s;}
+    .slide {
+      flex: 0 0 100%;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      max-height: 65vw;
+      min-height: 190px;
+      object-fit: contain;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px #3cf5 0.14;
+      transition: 0.2s;
+      background: #111;
+    }
     .slide:hover {filter: brightness(1.08) drop-shadow(0 2px 18px #ffe1007a);}
     .prev, .next {
       position: absolute; top: 49%; transform: translateY(-50%); background: var(--button-hover); color: white; border: none; font-size: 2.1rem; padding: 0.28rem 0.86rem; cursor: pointer; z-index: 2; border-radius: 9px; box-shadow: 0 2px 15px #0008; transition: 0.25s; opacity:0.8;}
@@ -212,8 +225,9 @@
     @media (max-width: 700px) {
       .header-bg-logo { width: 170px; top: 16%;}
       .header-text {padding-top: 1.2rem;}
-      header h1 {font-size: 1.22rem;}
-      .slide { height: 178px;}
+      header h1 {font-size: 1.55rem;}
+      header .sub {font-size: 0.96rem;}
+      .slide { max-height: 55vw; min-height: 110px; }
       .student-spotlight {padding-left:.2rem;}
       .student-photo {width:60px;height:60px;}
       .student-details {margin-left:70px;}
@@ -221,10 +235,12 @@
     @media (max-width: 400px) {
       .header-bg-logo { width: 110px; }
       .header-text {padding-top: 0.7rem;}
-      header h1 {font-size: 0.91rem;}
+      header h1 {font-size: 1.04rem;}
+      header .sub {font-size: 0.82rem;}
+      .slide {min-height: 90px; max-height: 45vw;}
     }
     @media (max-width: 550px) {
-      .slide {height: 110px;}
+      .slide {height: auto;}
       .student-photo{ width:43px; height:43px;}
       .student-details{margin-left:54px;}
       .thumbnails{gap:4px;}
@@ -233,7 +249,7 @@
   </style>
 </head>
 <body>
-  <button class="toggle-fontsize" onclick="toggleFontSize()">A+</button>
+  <button class="toggle-fontsize" onclick="toggleFontSize()" aria-label="Toggle font size">A+</button>
   <header>
     <div class="header-logo-wrap">
       <img src="logo-transparent.png" class="header-bg-logo" alt="Dreamers Logo Large" aria-hidden="true" />
@@ -243,95 +259,86 @@
       </div>
     </div>
   </header>
-  <nav id="mainnav">
-    <a href="#gallery"><span class="icon-heading">🖼️</span>Gallery</a>
-    <a href="#classes"><span class="icon-heading">🥋</span>Classes</a>
-    <a href="#fees"><span class="icon-heading">💰</span>Fees</a>
-    <a href="#facilities"><span class="icon-heading">🏆</span>Facilities</a>
-    <a href="#spotlight"><span class="icon-heading">🌟</span>Spotlight</a>
-    <a href="#about"><span class="icon-heading">👨‍🏫</span>About</a>
-    <a href="#contact"><span class="icon-heading">📞</span>Contact</a>
+  <nav id="mainnav" role="navigation" aria-label="Primary navigation">
+    <a href="#gallery"><span class="icon-heading" aria-hidden="true">🖼️</span>Gallery</a>
+    <a href="#classes"><span class="icon-heading" aria-hidden="true">🥋</span>Classes</a>
+    <a href="#fees"><span class="icon-heading" aria-hidden="true">💰</span>Fees</a>
+    <a href="#facilities"><span class="icon-heading" aria-hidden="true">🏆</span>Facilities</a>
+    <a href="#spotlight"><span class="icon-heading" aria-hidden="true">🌟</span>Spotlight</a>
+    <a href="#about"><span class="icon-heading" aria-hidden="true">👨‍🏫</span>About</a>
+    <a href="#contact"><span class="icon-heading" aria-hidden="true">📞</span>Contact</a>
   </nav>
+
   <!-- GALLERY -->
-  <section id="gallery">
-    <h2><span class="icon-heading">🖼️</span>Gallery</h2>
+  <section id="gallery" tabindex="0" aria-label="Gallery section with photos">
+    <h2><span class="icon-heading" aria-hidden="true">🖼️</span>Gallery</h2>
     <div class="slider-container">
       <div class="slider-wrapper">
         <div class="slider" id="slider">
-          <img src="gallery1.jpeg" class="slide" />
-          <img src="gallery2.jpeg" class="slide" />
-          <img src="gallery3.jpeg" class="slide" />
-          <img src="gallery4.jpeg" class="slide" />
-          <img src="gallery5.jpeg" class="slide" />
-          <img src="gallery6.jpeg" class="slide" />
-          <img src="gallery7.jpeg" class="slide" />
-          <img src="gallery8.jpeg" class="slide" />
-          <img src="gallery9.jpeg" class="slide" />
-          <img src="gallery10.jpeg" class="slide" />
-          <img src="gallery11.jpeg" class="slide" />
-          <img src="gallery12.jpeg" class="slide" />
-          <img src="gallery13.jpeg" class="slide" />
-          <img src="gallery14.jpeg" class="slide" />
-          <img src="gallery15.jpeg" class="slide" />
-          <img src="gallery16.jpeg" class="slide" />
-          <img src="gallery17.jpeg" class="slide" />
-          <img src="gallery18.jpeg" class="slide" />
-          <img src="gallery19.jpeg" class="slide" />
-          <img src="gallery20.jpeg" class="slide" />
-          <img src="gallery21.jpeg" class="slide" />
-          <img src="gallery22.jpeg" class="slide" />
+          <img src="gallery1.jpeg" class="slide" alt="Gallery image 1"/>
+          <img src="gallery2.jpeg" class="slide" alt="Gallery image 2"/>
+          <img src="gallery3.jpeg" class="slide" alt="Gallery image 3"/>
+          <img src="gallery4.jpeg" class="slide" alt="Gallery image 4"/>
+          <img src="gallery5.jpeg" class="slide" alt="Gallery image 5"/>
+          <img src="gallery6.jpeg" class="slide" alt="Gallery image 6"/>
+          <img src="gallery7.jpeg" class="slide" alt="Gallery image 7"/>
+          <img src="gallery8.jpeg" class="slide" alt="Gallery image 8"/>
+          <img src="gallery9.jpeg" class="slide" alt="Gallery image 9"/>
         </div>
-        <button class="prev" onclick="prevSlide()">&#10094;</button>
-        <button class="next" onclick="nextSlide()">&#10095;</button>
+        <button class="prev" onclick="prevSlide()" aria-label="Previous slide">&#10094;</button>
+        <button class="next" onclick="nextSlide()" aria-label="Next slide">&#10095;</button>
       </div>
-      <div class="thumbnails" id="thumbnails"></div>
+      <div class="thumbnails" id="thumbnails" aria-label="Gallery thumbnails list"></div>
     </div>
-    <div class="share-row">
-      <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')">
-        <i class="fab fa-whatsapp"></i>WhatsApp
+    <div class="share-row" aria-label="Share gallery on social media">
+      <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')" aria-label="Share on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>WhatsApp
       </button>
-      <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')">
-        <i class="fab fa-instagram"></i>Instagram
+      <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')" aria-label="Share on Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i>Instagram
       </button>
       <button class="fun-share" onclick="navigator.share ?
        navigator.share({title:'Check out Dreamers!', url:window.location.href}) :
-       window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank') ">
-        <i class="fas fa-share-alt"></i>Share
+       window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank')" aria-label="Share on Facebook or other">
+        <i class="fas fa-share-alt" aria-hidden="true"></i>Share
       </button>
     </div>
   </section>
+
   <!-- CLASSES -->
-  <section id="classes">
-    <h2><span class="icon-heading">🥋</span>Our Classes</h2>
+  <section id="classes" tabindex="0" aria-label="Information about classes offered">
+    <h2><span class="icon-heading" aria-hidden="true">🥋</span>Our Classes</h2>
     <ul>
-      <li><span class="badge">🥋⚔️🥋</span> <b>Karate, Stunts, Gymnastics & Martial Arts</b><br>
+      <li><span class="badge" aria-label="New class">NEW!</span> <b>Karate, Stunts, Gymnastics & Martial Arts</b><br>
         <u>Morning (7–8 AM)</u>: Mon, Wed, Fri <br>
         <u>Evening (4:30–6 PM)</u>: Tue, Thu, Sat <br>
-        <b>Sunday Combined</b>: 7:30 AM
+        <b>Sunday Combined:</b> 7:30 AM
       </li>
-      <li><b>Dance (All Styles)</b> <span class="badge">Fun</span><br>
+      <li><b>Dance (All Styles)</b> <span class="badge" aria-label="Fun class">Fun</span><br>
         <u>Evening (5–6:30 PM)</u>: Mon, Wed, Fri <br>
-        <u>Sunday</u>: 9–10:30 AM
+        <u>Sunday:</u> 9–10:30 AM
       </li>
-      <li><b>Zumba, Yoga, Crossfit (Ladies)</b> <span class="badge" style="background:#42eaa2;">Ladies Only</span><br>
+      <li><b>Zumba, Yoga, Crossfit (Ladies)</b> <span class="badge" aria-label="Ladies only class" style="background:#42eaa2;">Ladies Only</span><br>
         Mon–Fri: 5:30–6:30 AM & 9:30–10:30 AM
       </li>
     </ul>
-    <button class="fun-btn" onclick="window.location='#contact'">Join Now 🚀</button>
+    <button class="fun-btn" onclick="window.location='#contact'" aria-label="Join now">Join Now 🚀</button>
   </section>
+
   <!-- FEES -->
-  <section id="fees">
-    <h2><span class="icon-heading">💰</span>Fee Structure</h2>
+  <section id="fees" tabindex="0" aria-label="Fee structure information">
+    <h2><span class="icon-heading" aria-hidden="true">💰</span>Fee Structure</h2>
     <ul>
-      <li><b>Yearly:</b> ₹10,000 <span class="badge">NO Admission Fee!</span></li>
-      <li><b>Half-Yearly:</b> ₹5,500 <span class="badge">NO Admission Fee!</span></li>
-      <li><b>Quarterly:</b> ₹3,000 <span class="badge">NO Admission Fee!</span></li>
+      <li><b>Yearly:</b> ₹10,000 <span class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
+      <li><b>Half-Yearly:</b> ₹5,500</li>
+      <li><b>Quarterly:</b> ₹3,000</li>
       <li><b>Monthly:</b> ₹1,200 + ₹1,000 Admission Fee</li>
     </ul>
   </section>
+
   <!-- FACILITIES -->
-  <section id="facilities">
-    <h2><span class="icon-heading">🏆</span>Our Facilities</h2>
+  <section id="facilities" tabindex="0" aria-label="Facilities offered">
+    <h2><span class="icon-heading" aria-hidden="true">🏆</span>Our Facilities</h2>
     <ul>
       <li>Fully air-conditioned, vibrant training studio</li>
       <li>Shock-absorbent, safe flooring</li>
@@ -340,37 +347,36 @@
       <li>Yoga & Crossfit zone</li>
       <li><b>Certified, cool trainers</b></li>
     </ul>
-    <div class="countdown">
+    <div class="countdown" aria-live="polite" aria-atomic="true">
       Next Big Event in <span id="countdown-timer"></span>!
     </div>
   </section>
-  <!-- SPOTLIGHT / STUDENT OF THE MONTH -->
-  <section id="spotlight">
-    <h2><span class="icon-heading">🌟</span>Student of the Month</h2>
+
+  <!-- SPOTLIGHT -->
+  <section id="spotlight" tabindex="0" aria-label="Student spotlight">
+    <h2><span class="icon-heading" aria-hidden="true">🌟</span>Student of the Month</h2>
     <div class="student-spotlight">
-      <img src="student1.jpeg" alt="Student of the Month" class="student-photo" />
+      <img src="student1.jpeg" alt="Student of the Month, Kiara Singh" class="student-photo" />
       <div class="student-details">
         <div class="student-name" id="student-name">Kiara Singh</div>
         <div class="student-achieve" id="student-achieve">Won gold in State Karate Championship - March 2025</div>
         <div style="margin-top:7px;color:#555;">
-          "Dreamers makes me feel like a superhero! My confidence and energy are always high here!" 
-          <i class="fas fa-star" style="color:#ffe100;"></i>
+          "Dreamers makes me feel like a superhero! My confidence and energy are always high here!"
+          <i class="fas fa-star" style="color:#ffe100;" aria-hidden="true"></i>
         </div>
       </div>
       <div style="clear: both;"></div>
     </div>
-    <div class="carousel" style="margin-top:1.4rem;">
-      <button class="carousel-btn" onclick="moveTestimonial(-1)">&#10094;</button>
-      <div class="testimonial" id="testimonial-text">
-        “Dreamers classes are full of fun and power! Best hours of my week!” <i class="fas fa-face-grin-stars"></i>
-        <div style="font-size:.93rem;color:#be75f9;margin-top:8px;">- Aryan, Age 12</div>
-      </div>
-      <button class="carousel-btn" onclick="moveTestimonial(1)">&#10095;</button>
+    <div class="carousel" style="margin-top:1.4rem;" role="region" aria-label="Student testimonials">
+      <button class="carousel-btn" onclick="moveTestimonial(-1)" aria-label="Previous testimonial">&#10094;</button>
+      <div class="testimonial" id="testimonial-text" tabindex="0"></div>
+      <button class="carousel-btn" onclick="moveTestimonial(1)" aria-label="Next testimonial">&#10095;</button>
     </div>
   </section>
+
   <!-- ABOUT -->
-  <section id="about">
-    <h2><span class="icon-heading">👨‍🏫</span>About Us</h2>
+  <section id="about" tabindex="0" aria-label="About Dreamers">
+    <h2><span class="icon-heading" aria-hidden="true">👨‍🏫</span>About Us</h2>
     <p>
       <b>Founder & Director:</b> Abhishek Kumar <br />
       <span class="badge" style="background:#4fd1c5;">International Athlete</span>
@@ -394,41 +400,46 @@
       <b>Mission:</b> Empower every student with <span style="color:var(--badge);">strength, artistry, and health</span>.
     </p>
     <div class="share-row">
-      <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')">
-        <i class="fab fa-instagram"></i>Follow Us
+      <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')" aria-label="Follow on Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i>Follow Us
       </button>
-      <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')">
-        <i class="fab fa-whatsapp"></i>Join WhatsApp
+      <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')" aria-label="Join WhatsApp group">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>Join WhatsApp
       </button>
     </div>
   </section>
+
   <!-- CONTACT -->
-  <section id="contact">
-    <h2><span class="icon-heading">📞</span>Contact & Address</h2>
+  <section id="contact" tabindex="0" aria-label="Contact details">
+    <h2><span class="icon-heading" aria-hidden="true">📞</span>Contact & Address</h2>
     <p>
-      <b>Location:</b> 2nd Floor, Navin Market, Pillar 52–53, Kurthoul, Patna – 804453 
+      <b>Location:</b> 2nd Floor, Navin Market, Pillar 52–53, Kurthoul, Patna – 804453
       (<span style="color:var(--badge);">near TVS Showroom & Laxmi Sweets</span>)
     </p>
     <p>
       <b>Phone:</b> <a href="tel:+918210128137" style="color: #ffe100;font-weight:600;">+91 8210128137</a>
     </p>
     <p>
-      <b>Instagram:</b> <a href="https://instagram.com/dreamers162023" target="_blank" style="color: #ffe100;font-weight:600;">@dreamers162023</a>
+      <b>Instagram:</b> <a href="https://instagram.com/dreamers162023" target="_blank" rel="noopener" style="color: #ffe100;font-weight:600;">@dreamers162023</a>
     </p>
     <div class="countdown" style="margin-top:17px;">
-      <b>Need info fast?</b> <a href="https://wa.me/918210128137" target="_blank" style="color:#25d366;font-weight:600;">Chat on WhatsApp &rarr;</a>
+      <b>Need info fast?</b> <a href="https://wa.me/918210128137" target="_blank" rel="noopener" style="color:#25d366;font-weight:600;">Chat on WhatsApp &rarr;</a>
     </div>
   </section>
-  <div class="footer">
-    &copy; 2025 <span>Dreamers</span> | Designed with ❤️ for young stars | 
+
+  <div class="footer" role="contentinfo" aria-label="Site footer">
+    &copy; 2025 <span>Dreamers</span> | Designed with ❤️ for young stars |
     <span>Be Bold. Be Awesome. Be a Dreamer.</span>
   </div>
-  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+
+  <a href="https://wa.me/918210128137" class="whatsapp-float" target="_blank" rel="noopener" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Full View" id="lightbox-img">
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image preview">
+    <img src="" alt="Full View" id="lightbox-img" />
   </div>
+
   <script>
     // Gallery Slider/Lightbox
     const slides = document.querySelectorAll('.slide');
@@ -442,12 +453,15 @@
       thumb.src = slide.src;
       thumb.classList.add('thumb');
       if (index === 0) thumb.classList.add('active');
+      thumb.setAttribute('alt', `Thumbnail ${index+1}`);
       thumb.addEventListener('click', () => showSlide(index));
       thumbnailsContainer.appendChild(thumb);
 
       slide.addEventListener('click', () => {
         lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
         lightboxImg.src = slide.src;
+        lightboxImg.alt = slide.alt || "Expanded gallery image";
       });
     });
     const thumbnails = document.querySelectorAll('.thumb');
@@ -469,11 +483,12 @@
     document.querySelector('.next').addEventListener('click', nextSlide);
     document.querySelector('.prev').addEventListener('click', prevSlide);
     setInterval(() => { nextSlide(); }, 4800);
+
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';
+      lightbox.setAttribute('aria-hidden', 'true');
       lightboxImg.src = "";
     });
-    showSlide(currentIndex);
 
     // Touch swipe for gallery slider
     let startX = null;
@@ -496,6 +511,7 @@
       document.body.style.fontSize = bigFont ? '' : '1.13em';
       bigFont = !bigFont;
     }
+
     // TESTIMONIAL CAROUSEL
     const testimonials = [
       {text: '“Dreamers classes are full of fun and power! Best hours of my week!”',name: "Aryan, Age 12"},
@@ -518,6 +534,7 @@
         <div style="font-size:.93rem;color:#be75f9;margin-top:8px;">- ${testimonials[testimonialIdx].name}</div>`;
     }
     showTestimonial();
+
     // COUNTDOWN TO NEXT EVENT
     function setupCountdown() {
       const eventDate = new Date(2025, 8, 10, 10); // Sep 10, 2025 at 10am
