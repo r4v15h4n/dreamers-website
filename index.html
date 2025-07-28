@@ -416,6 +416,46 @@ ul li::before { content: "✨"; position: absolute; left: -1.5rem; font-size: 1.
   .thumbnails{gap:4px;}
   nav a {margin:7px 4px;font-size:0.92rem;}
 }
+    .founder-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.founder-photo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--highlight);
+  box-shadow: 0 0 18px var(--highlight);
+  flex-shrink: 0;
+}
+
+.founder-text {
+  flex: 1 1 300px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .founder-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .founder-text {
+    margin-top: 12px;
+  }
+  .founder-photo {
+    width: 90px;
+    height: 90px;
+    border-width: 3px;
+  }
+}
   </style>
 
   <body>
@@ -515,8 +555,8 @@ ul li::before { content: "✨"; position: absolute; left: -1.5rem; font-size: 1.
     <h2><span class="icon-heading" aria-hidden="true">💰</span>Fee Structure</h2>
     <ul>
       <li><b>Yearly:</b> ₹10,000 <span class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
-      <li><b>Half-Yearly:</b> ₹5,500 class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
-      <li><b>Quarterly:</b> ₹3,000 class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
+      <li><b>Half-Yearly:</b> ₹5,500 <span class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
+      <li><b>Quarterly:</b> ₹3,000 <span class="badge" aria-label="No admission fee">NO Admission Fee!</span></li>
       <li><b>Monthly:</b> ₹1,200 + ₹1,000 Admission Fee</li>
     </ul>
   </section>
@@ -561,38 +601,50 @@ ul li::before { content: "✨"; position: absolute; left: -1.5rem; font-size: 1.
 
   <!-- ABOUT -->
   <section id="about" tabindex="0" aria-label="About Dreamers">
-    <h2><span class="icon-heading" aria-hidden="true">👨‍🏫</span>About Us</h2>
-    <p>
-      <b>Founder & Director:</b> Abhishek Kumar <br />
-      <span class="badge" style="background:#4fd1c5;">International Athlete</span>
-      <span class="badge" style="background:#ff6f61;">Bihar Khel Samman awardee</span>
-      <span class="badge" style="background:#ffe100;color:#212121;">Black Belt (Japan)</span>
-    </p>
-    <p>
-      <b>About Dreamers:</b><br>
-      Dreamers is not just a fitness studio—it's a <span style="color:var(--highlight);font-weight:600">movement</span>!<br>
-      We inspire kids, teens, and adults to build <span style="color:var(--badge);font-weight:600;">skills & self-belief</span> through dance, martial arts, and fun fitness programs.<br>
-      <span style="color:var(--accent);">Join our vibrant community & unleash YOUR superpowers!</span>
-    </p>
-    <p>
-      <b>Why Dreamers?</b><br>
-      - Modern + Traditional training <br>
-      - Fun, friendly, and personal guidance<br>
-      - Gamified learning and cheer squads!<br>
-      <span class="badge" style="background:#42eaa2;">Be a Dreamer. Be Awesome.</span>
-    </p>
-    <p>
-      <b>Mission:</b> Empower every student with <span style="color:var(--badge);">strength, artistry, and health</span>.
-    </p>
-    <div class="share-row">
-      <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')" aria-label="Follow on Instagram">
-        <i class="fab fa-instagram" aria-hidden="true"></i>Follow Us
-      </button>
-      <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')" aria-label="Join WhatsApp group">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>Join WhatsApp
-      </button>
+  <h2><span class="icon-heading" aria-hidden="true">👨‍🏫</span>About Us</h2>
+  
+  <div class="founder-container">
+    <img src="founder.jpg" alt="Photo of Abhishek Kumar, Founder and Director of Dreamers" class="founder-photo" loading="lazy" />
+    <div class="founder-text">
+      <p><b>Founder & Director:</b> Abhishek Kumar</p>
+      <p>
+        <span class="badge" style="background:#4fd1c5;">International Athlete</span>
+        <span class="badge" style="background:#ff6f61;">Bihar Khel Samman awardee</span>
+        <span class="badge" style="background:#ffe100;color:#212121;">Black Belt (Japan)</span>
+      </p>
+      <p>
+        Abhishek has dedicated his life to empowering kids, teens, and adults through dance and martial arts.  
+        With years of international training and accolades, he inspires every student to unlock their full potential 
+        by combining discipline, passion, and fun.
+      </p>
     </div>
-  </section>
+  </div>
+  
+  <p>
+    <b>About Dreamers:</b><br />
+    Dreamers is not just a fitness studio—it's a <span style="color:var(--highlight);font-weight:600">movement</span>!<br />
+    We inspire kids, teens, and adults to build <span style="color:var(--badge);font-weight:600;">skills & self-belief</span> through dance, martial arts, and fun fitness programs.<br />
+    <span style="color:var(--accent);">Join our vibrant community & unleash YOUR superpowers!</span>
+  </p>
+  <p>
+    <b>Why Dreamers?</b><br />
+    - Modern + Traditional training <br />
+    - Fun, friendly, and personal guidance<br />
+    - Gamified learning and cheer squads!<br />
+    <span class="badge" style="background:#42eaa2;">Be a Dreamer. Be Awesome.</span>
+  </p>
+  <p>
+    <b>Mission:</b> Empower every student with <span style="color:var(--badge);">strength, artistry, and health</span>.
+  </p>
+  <div class="share-row">
+    <button class="fun-share" onclick="window.open('https://instagram.com/dreamers162023','_blank')" aria-label="Follow on Instagram">
+      <i class="fab fa-instagram" aria-hidden="true"></i>Follow Us
+    </button>
+    <button class="fun-share" onclick="window.open('https://wa.me/918210128137','_blank')" aria-label="Join WhatsApp group">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i>Join WhatsApp
+    </button>
+  </div>
+</section>
 
   <!-- CONTACT -->
   <section id="contact" tabindex="0" aria-label="Contact details">
